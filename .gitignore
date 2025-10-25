@@ -1,0 +1,13 @@
+.env
+node_modules
+Documents/
+
+### Node ###
+# Logs
+.npm
+*.log
+lerna-debug.log*
+logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
