@@ -12,7 +12,7 @@ const pokemonController = require('../../controllers/pokemon-controller');
 router.get('/', pokemonController.getAllPokemons);
 
 /**
- * @routeGET /api/v1/pokemon/:name or /api/v1/pokemon/:id
+ * @routeGET /api/v1/pokemon/details/:name or /api/v1/pokemon/details/:id
  * @description Get details of a pokemon
  * @access Public
  */
@@ -33,7 +33,7 @@ router.get('/catalog/types', pokemonController.getCatalogTypes);
 router.get('/type/:type', pokemonController.getPokemonsPerType);
 
 /**
- * @routeGET /api/v1/pokemon/:pokemon/specie
+ * @routeGET /api/v1/pokemon/specie
  * @description Get specie of a pokemon
  * @access Public
  */
