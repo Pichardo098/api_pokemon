@@ -10,6 +10,18 @@ const config = require('./config');
 const globalErrorHandler = require('./controllers/error-controller');
 const AppError = require('./utils/appError');
 
+// Import express-rate-limit
+const rateLimit = require('express-rate-limit');
+
+const generalLimiter = rateLimit({
+  windowMs: config.rateLimit.windowMs * 60 * 1000,
+  max: config.rateLimit.max, 
+  message: {
+    message: config.rateLimit.message,
+    statusCode: 429,
+  },
+});
+
 // Create an Express app
 const app = express();
 
@@ -24,27 +36,30 @@ app.use(cors());
 
 // Manual CORS header configuration (optional but consistent)
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-    res.header('Access-Control-Allow-Methods', '*');
-    res.header('Allow', '*');
-    next();
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+  res.header('Access-Control-Allow-Methods', '*');
+  res.header('Allow', '*');
+  next();
 });
+
+// Enable rate limiting
+app.use(generalLimiter);
 
 // Create an initial router
 const initialRoute = express.Router();
 
 // Root route
 initialRoute.get('/', (req, res) => {
-    res.json({
-        message: `Welcome to POKE API`,
-        port: config.port
-    });
+  res.json({
+    message: `Welcome to POKE API`,
+    port: config.port,
+  });
 });
 
 // Simple health check endpoint
 initialRoute.get('/conection', (req, res) => {
-    res.sendStatus(200);
+  res.sendStatus(200);
 });
 
 // Register routes
@@ -53,7 +68,9 @@ app.use(require('./routes'));
 
 // 404 handler
 app.use((req, res, next) => {
-    next(new AppError(`No se encontró la URL solicitada: ${req.originalUrl}`, 404));
+  next(
+    new AppError(`No se encontró la URL solicitada: ${req.originalUrl}`, 404)
+  );
 });
 
 // Global error handler

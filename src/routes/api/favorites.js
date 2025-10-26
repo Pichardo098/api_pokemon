@@ -16,12 +16,12 @@ router.post('/', favoriteController.addFavorite);
  * @description Get all favorites
  * @access Public
  */
-router.get('/', favoriteController.getFavorites);
+router.get('/:userId', favoriteController.getFavorites);
 
 /**
  * @routeDELETE /api/v1/favorites
  * @description Remove a pokemon from favorites
- * @access Public
+ * @access Public´
  */
 router.delete('/', favoriteController.removeFavorite);
 

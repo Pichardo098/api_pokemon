@@ -1,29 +1,37 @@
 {
-    "name": "poke_api",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "set DEBUG=app:* && node ./src/server.js",
-        "dev": "set NODE_ENV=development&& nodemon ./src/server.js",
-        "test": "jest --coverage=true  --forceExit --detectOpenHandles",
-        "test:coverage": "jest --coverage",
-        "debug": "set DEBUG=express:*,app:* && npm run start",
-        "inspect": "set DEBUG=express:*,app:* nodemon --inspect server"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "type": "commonjs",
-    "dependencies": {
-        "bcryptjs": "^3.0.2",
-        "cors": "^2.8.5",
-        "dotenv": "^17.2.3",
-        "express": "^5.1.0",
-        "mongoose": "^8.19.2",
-        "redis": "^5.9.0"
-    },
-    "devDependencies": {
-        "nodemon": "^3.1.10"
-    }
+  "name": "poke_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "set DEBUG=app:* && node ./src/server.js",
+    "dev": "set NODE_ENV=development&& nodemon ./src/server.js",
+    "test": "jest --coverage=true  --forceExit --detectOpenHandles",
+    "test:coverage": "jest --coverage",
+    "debug": "set DEBUG=express:*,app:* && npm run start",
+    "inspect": "set DEBUG=express:*,app:* nodemon --inspect server",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "mongoose": "^8.19.2",
+    "redis": "^5.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.38.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2"
+  }
 }

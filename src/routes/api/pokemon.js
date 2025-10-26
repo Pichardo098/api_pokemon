@@ -19,6 +19,13 @@ router.get('/', pokemonController.getAllPokemons);
 router.get('/details/', pokemonController.getDetailsPokemon);
 
 /**
+ * @routeGET /api/v1/pokemon/catalog/types
+ * @description Get catalog types
+ * @access Public
+ */
+router.get('/catalog/types', pokemonController.getCatalogTypes);
+
+/**
  * @routeGET /api/v1/pokemon/type/:type
  * @description Get pokemons by type
  * @access Public
